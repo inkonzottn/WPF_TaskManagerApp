@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\User\Desktop\q\SoulProgramming\WPF_TaskManager\WPF_TaskManager\obj\Debug\net6.0-windows\
+C:\Users\User\Desktop\q\SoulProgramming\WPF_TaskManagerApp\WPF_TaskManager\WPF_TaskManager\obj\Debug\net6.0-windows\
 WPF_TaskManager
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\User\Desktop\q\SoulProgramming\WPF_TaskManager\WPF_TaskManager\App.xaml
-2376403462
+C:\Users\User\Desktop\q\SoulProgramming\WPF_TaskManagerApp\WPF_TaskManager\WPF_TaskManager\App.xaml
+41709929622
 
-42104924793
-194726069201
-MainWindow.xaml;View\LoginView.xaml;
+15-223099878
+209692157290
+CustomControls\BindablePasswordBox.xaml;MainWindow.xaml;View\LoginView.xaml;View\MainView.xaml;
 
 False
 

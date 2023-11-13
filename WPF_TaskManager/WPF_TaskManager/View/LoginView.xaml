@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_TaskManager.View"
+        xmlns:viewModel="clr-namespace:WPF_TaskManager.ViewModel" xmlns:customcontrols="clr-namespace:WPF_TaskManager.CustomControls"
         mc:Ignorable="d"
         Title="LoginView" Height="550" Width="800"
         WindowStyle="None"
@@ -12,6 +13,19 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         MouseDown="Window_MouseDown">
+
+    <Window.DataContext>
+        <viewModel:LogInViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </Window.Resources>
+    
+    <Window.Visibility>
+        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
+    </Window.Visibility>
+    
     <Border CornerRadius="50">
         <Border.Background>
             <ImageBrush ImageSource="/Images/background.jpg"/>
@@ -159,6 +173,7 @@
                                 Margin="0,35,0,0"/>
 
                     <TextBox x:Name="txtUsername"
+                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                              Foreground="White"
                              FontSize="18"
                              FontFamily="Montserrat"
@@ -185,26 +200,23 @@
                                Margin="0,10,0,0"/>
 
 
-                    <PasswordBox x:Name="txtPassword"
-                                 Foreground="White"
-                                 FontSize="18"
-                                 FontFamily="Montserrat"
-                                 FontWeight="Medium"
-                                 BorderBrush="LightGray"
-                                 CaretBrush="DarkGray"
-                                 BorderThickness="0,0,2,1"
-                                 Height="28"
-                                 VerticalContentAlignment="Center"
-                                 Margin="0,5,0,0"
-                                 Padding="20,0,0,0">
-                        <PasswordBox.Background>
-                            <ImageBrush ImageSource="/Images/key.png"
-                                        Stretch="None"
-                                        AlignmentX="Left"/> 
-                        </PasswordBox.Background>
-                    </PasswordBox>
+                    <customcontrols:BindablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Height="28"
+                                                        Margin="0,5,0,0">  
+
+                    </customcontrols:BindablePasswordBox>
+
+
+                    <TextBlock Text="{Binding ErrorMessage}"
+                               Foreground="#D7596D"
+                               FontSize="15"
+                               FontFamily="Montserrat"
+                               FontWeight="Medium"
+                               Margin="0,10,0,0"
+                               TextWrapping="Wrap"/>  
 
                     <Button x:Name="btnLogIn"
+                            Command="{Binding LogInCommand}"
                             BorderThickness="0"
                             Content="LOG IN"
                             Foreground="LightGray"
@@ -212,8 +224,7 @@
                             FontFamily="Montserrat"
                             Cursor="Hand"
                             Grid.Column="2"
-                            Margin="0,50,0,0"
-                            Click="btnLogIn_Click">         
+                            Margin="0,40,0,0">         
 
                         <Button.Style>
                             <Style TargetType="Button">
